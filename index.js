@@ -1,7 +1,14 @@
 const table = document.querySelector("#newWorld");
+
 const picaxe = document.querySelector(".picaxe");
+const picHover = document.querySelector(".num1")
+
 const axe = document.querySelector(".axe");
+const axHover = document.querySelector(".num2");
+
 const shovel = document.querySelector(".shovel");
+const shHover = document.querySelector(".num3");
+
 const storage = document.querySelector(".inside-inventory");
 
 const materials = {
@@ -12,49 +19,82 @@ const materials = {
   cloud: "cloud",
   leaves: "leaves",
   stone: "stone",
+  green:"green",
+  red:"red"
 };
 const inventory = [];
 
 let clickedPicax = false;
 picaxe.addEventListener("click", () => {
+  picHover.classList.add(materials.green)
+  axHover.classList.remove(materials.green)
+  shHover.classList.remove(materials.green)
   clickedPicax = true;
   clickedAxe = false;
   clickedShovel = false;
 });
 let clickedAxe = false;
 axe.addEventListener("click", () => {
+  axHover.classList.add(materials.green)
+  picHover.classList.remove(materials.green)
+  shHover.classList.remove(materials.green)
   clickedAxe = true;
   clickedPicax = false;
   clickedShovel = false;
 });
 let clickedShovel = false;
 shovel.addEventListener("click", () => {
+  shHover.classList.add(materials.green)
+  picHover.classList.remove(materials.green)
+  axHover.classList.remove(materials.green)
   clickedShovel = true;
   clickedPicax = false;
   clickedAxe = false;
 });
 
-const brake = (e) => {
-  if (e.target.classList.value !== "block") {
-    if (clickedPicax && e.target.classList[1] == materials.stone) {
-      inventory.push(e.target.classList.value);
-      console.log(inventory);
-      e.target.classList = "";
-      storage.classList = "";
-      storage.classList.add("inside-inventory",inventory[inventory.length -1].split(' ')[1])
-    } else if (clickedAxe && (e.target.classList[1] == materials.wood || e.target.classList[1] == materials.leaves)){
-      inventory.push(e.target.classList.value);
-      e.target.classList = "";
-      storage.classList = ""
-      storage.classList.add("inside-inventory",inventory[inventory.length -1].split(' ')[1])
-    } else if (clickedShovel && (e.target.classList[1] == materials.dirt || e.target.classList[1] == materials.grass)) {
-      inventory.push(e.target.classList.value);
-      e.target.classList = "";
-      storage.classList = ""
-      storage.classList.add("inside-inventory",inventory[inventory.length -1].split(' ')[1])
+const mine = (event) => {
+  if (event.target.classList.value !== "block") {
+    if (clickedPicax && event.target.classList[1] == materials.stone) {
+      ifMine(event)
+    } else if (clickedAxe && (event.target.classList[1] == materials.wood || event.target.classList[1] == materials.leaves)){
+      ifMine(event)
+    } else if (clickedShovel && (event.target.classList[1] == materials.dirt || event.target.classList[1] == materials.grass)) {
+      ifMine(event)
     }
   }
 };
+
+const ifMine = (event) =>{
+  inventory.push(event.target.classList.value);
+  event.target.classList = "";
+  storage.classList = "";
+  storage.classList.add("inside-inventory",inventory[inventory.length -1].split(' ')[1])
+}
+
+storage.addEventListener('click',(event)=>{
+  storage.classList[1]
+  // console.log(inventory);
+  console.log(storage.classList[1]);
+})
+
+const redBorder = (event) =>{
+  if (event.target.classList.value !== "block") {
+    if (clickedPicax && event.target.classList.value !== "") {
+      console.log("picax red");
+      picHover.classList.add(materials.red);
+      setTimeout(function(){picHover.classList.remove(materials.red)},500)
+    } else if (clickedAxe && event.target.classList.value !== ""){
+      console.log("axe red");
+      axHover.classList.add(materials.red);
+      setTimeout(function(){axHover.classList.remove(materials.red)},500)
+    } else if (clickedShovel && event.target.classList.value !== ""){
+      console.log("shovle red");
+      shHover.classList.add(materials.red);
+      setTimeout(function(){shHover.classList.remove(materials.red)},500)
+    }
+  }
+}
+
 
 for (let i = 0; i < 20; i++) {
   const tr = document.createElement("tr");
@@ -66,7 +106,10 @@ for (let i = 0; i < 20; i++) {
     div.id = "x:" + j + "_" + "y:" + i;
     div.className = "block";
     td.appendChild(div);
-    div.addEventListener("click", brake);
+    div.addEventListener("click", (event) => {
+      mine(event);
+      redBorder(event);
+    });
     tr.appendChild(td);
     if (i === 15) {
       div.className = "block grass";

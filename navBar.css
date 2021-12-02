@@ -1,4 +1,4 @@
-.tools{
+.tools {
   margin: auto 0;
   width: 10vw;
   height: 100vh;
@@ -9,25 +9,44 @@
   flex-direction: column;
   align-items: center;
 }
-.tools .container{
+.tools .container {
   width: 6rem;
   height: 8rem;
-  border: 5px solid rgba(245, 245, 245, 0.253);
+  border: 5px solid rgba(255, 255, 255, 0.253);
   margin-top: 3rem;
 }
 
+.tools .container.green {
+  border-color: green;
+}
 
+.tools .container.red {
+  border-color: red;
+  animation: blink 1s linear 
+}
 
-.picaxe{
+/* @keyframes blink {
+  0% {
+    border-color: red;
+  }
+  50% {
+    border-color: red;
+  }
+  100% {
+    border-color: green;
+  }
+} */
+
+.picaxe {
   width: 100%;
   height: 80%;
-  background-image:url("./Imgs/icons8-minecraft-pickaxe-96.png") ;
+  background-image: url("./Imgs/icons8-minecraft-pickaxe-96.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
 }
-.text{
+.text {
   width: 100%;
   height: 20%;
   background: wheat;
@@ -35,33 +54,33 @@
   padding: 3px 0;
 }
 
-.axe{
+.axe {
   width: 100%;
   height: 80%;
-  background-image:url("./Imgs/icons8-minecraft-axe-96.png") ;
+  background-image: url("./Imgs/icons8-minecraft-axe-96.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
 }
 
-.shovel{
+.shovel {
   width: 100%;
   height: 80%;
-  background-image:url("./Imgs/icons8-minecraft-shovel-96.png") ;
+  background-image: url("./Imgs/icons8-minecraft-shovel-96.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
 }
 
-.inventory{
-  margin-top:3rem ;
+.inventory {
+  margin-top: 3rem;
   width: 50px;
   height: 50px;
   border: 2px solid whitesmoke;
 }
-.inside-inventory{
+.inside-inventory {
   width: 100%;
   height: 100%;
   cursor: grab;
