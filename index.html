@@ -8,24 +8,34 @@
   <title>Minecraft</title>
   <script src="./index.js" defer></script>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./navBar.css">
 </head>
 
 <body>
-  <nav class="tools">
-    <div class="container">
-      <div class="picaxe"></div>
-    </div>
-    <div class="container">
-      <div class="axe"></div>
-    </div>
-    <div class="container">
-      <div class="shovel"></div>
-    </div>
-  </nav>
+
+
   <div class="world-Container">
     <table id="newWorld" CELLSPACING=0>
     </table>
   </div>
+
+  <nav class="tools">
+    <div class="container">
+      <div class="picaxe"></div>
+      <div class="text"></div>
+    </div>
+    <div class="container">
+      <div class="axe"></div>
+      <div class="text"></div>
+    </div>
+    <div class="container">
+      <div class="shovel"></div>
+      <div class="text"></div>
+    </div>
+    <div class="inventory">
+      <div class="inside-inventory"></div>
+    </div>
+  </nav>
 </body>
 <!-- <script>
   const table = document.querySelector("#newWorld");
