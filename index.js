@@ -1,4 +1,8 @@
 const table = document.querySelector("#newWorld");
+const picaxe = document.querySelector(".picaxe");
+const axe = document.querySelector(".axe");
+const shovel = document.querySelector(".shovel");
+const storage = document.querySelector(".inside-inventory");
 
 const materials = {
   wood: "oak",
@@ -7,15 +11,51 @@ const materials = {
   grass: "grass",
   cloud: "cloud",
   leaves: "leaves",
-  stone: "Stone",
+  stone: "stone",
 };
-const tools = {
-  axe: 24,
-  picaxe: 87,
-  shovel: 32,
-}
-
 const inventory = [];
+
+let clickedPicax = false;
+picaxe.addEventListener("click", () => {
+  clickedPicax = true;
+  clickedAxe = false;
+  clickedShovel = false;
+});
+let clickedAxe = false;
+axe.addEventListener("click", () => {
+  clickedAxe = true;
+  clickedPicax = false;
+  clickedShovel = false;
+});
+let clickedShovel = false;
+shovel.addEventListener("click", () => {
+  clickedShovel = true;
+  clickedPicax = false;
+  clickedAxe = false;
+});
+
+const brake = (e) => {
+  if (e.target.classList.value !== "block") {
+    if (clickedPicax && e.target.classList[1] == materials.stone) {
+      inventory.push(e.target.classList.value);
+      console.log(inventory);
+      e.target.classList = "";
+      storage.classList = "";
+      storage.classList.add("inside-inventory",inventory[inventory.length -1].split(' ')[1])
+    } else if (clickedAxe && (e.target.classList[1] == materials.wood || e.target.classList[1] == materials.leaves)){
+      inventory.push(e.target.classList.value);
+      e.target.classList = "";
+      storage.classList = ""
+      storage.classList.add("inside-inventory",inventory[inventory.length -1].split(' ')[1])
+    } else if (clickedShovel && (e.target.classList[1] == materials.dirt || e.target.classList[1] == materials.grass)) {
+      inventory.push(e.target.classList.value);
+      e.target.classList = "";
+      storage.classList = ""
+      storage.classList.add("inside-inventory",inventory[inventory.length -1].split(' ')[1])
+    }
+  }
+};
+
 for (let i = 0; i < 20; i++) {
   const tr = document.createElement("tr");
   table.appendChild(tr);
@@ -26,21 +66,13 @@ for (let i = 0; i < 20; i++) {
     div.id = "x:" + j + "_" + "y:" + i;
     div.className = "block";
     td.appendChild(div);
-    div.sy;
-    div.addEventListener("click", () => {
-      if (div.classList.value !== "block") {
-        inventory.push(div.classList.value);
-        console.log(div.classList.value);
-        console.log(inventory);
-        div.classList = "";
-      }
-    });
+    div.addEventListener("click", brake);
     tr.appendChild(td);
     if (i === 15) {
-      div.className = "grass";
+      div.className = "block grass";
     }
     if (i >= 16) {
-      div.className = "dirt";
+      div.className = "block dirt";
     }
   }
 }
@@ -56,6 +88,7 @@ const create = (x, y, type) => {
     document.getElementById(`x:${x}_y:${y}`).id = materials.cloud;
   }
 };
+
 // stone
 create(13, 13, "stone");
 create(13, 14, "stone");
@@ -86,11 +119,11 @@ create(3, 7, "leaves");
 create(4, 7, "leaves");
 create(5, 7, "leaves");
 // clouds
-create(3,2,"cloud")
-create(4,2,"cloud")
-create(5,2,"cloud")
-create(2,3,"cloud")
-create(3,3,"cloud")
-create(4,3,"cloud")
-create(5,3,"cloud")
-create(6,3,"cloud")
+create(3, 2, "cloud");
+create(4, 2, "cloud");
+create(5, 2, "cloud");
+create(2, 3, "cloud");
+create(3, 3, "cloud");
+create(4, 3, "cloud");
+create(5, 3, "cloud");
+create(6, 3, "cloud");
