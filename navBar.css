@@ -12,21 +12,53 @@
 .tools .container{
   width: 6rem;
   height: 8rem;
-  border: 2px solid whitesmoke;
+  border: 5px solid rgba(245, 245, 245, 0.253);
   margin-top: 3rem;
 }
+
+
 
 .picaxe{
   width: 100%;
   height: 80%;
-  background-image:url("./Imgs/icons8-minecraft-pickaxe-80.png") ;
+  background-image:url("./Imgs/icons8-minecraft-pickaxe-96.png") ;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
 }
-.tools .container .text{
+.text{
   width: 100%;
   height: 20%;
   background: wheat;
+  text-align: center;
+  padding: 3px 0;
+}
+
+.axe{
+  width: 100%;
+  height: 80%;
+  background-image:url("./Imgs/icons8-minecraft-axe-96.png") ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.shovel{
+  width: 100%;
+  height: 80%;
+  background-image:url("./Imgs/icons8-minecraft-shovel-96.png") ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.inventory{
+  margin-top:3rem ;
+  width: 50px;
+  height: 50px;
+  border: 2px solid whitesmoke;
+  cursor: grab;
 }
