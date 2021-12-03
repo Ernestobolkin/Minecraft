@@ -6,34 +6,53 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minecraft</title>
-  <script src="./index.js" defer></script>
-  <link rel="stylesheet" href="./style.css">
+  <script src="./index.js" defer type="module"></script>
+  <script src="./menu.js" defer></script>
+  <link rel="stylesheet" href="./loadingScrean.css">
   <link rel="stylesheet" href="./navBar.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-<!-- the game -->
-  <div class="world-Container">
-    <table id="newWorld" CELLSPACING=0>
-    </table>
+  <div class="title-screen">
+    <div class="btn-container">
+      <div class="title"></div>
+      <div class="start btn">Start</div>
+      <div class="unnknown btn">?</div>
+      <div class="options">
+        <div class="setings btn-type2">setings</div>
+        <div class="unkn btn-type2">?</div>
+      </div>
+    </div>
   </div>
-<!-- tools -->
-  <nav class="tools">
-    <div class="container num1">
-      <div class="picaxe"></div>
-      <div class="text">PICAXE</div>
+  <div class="gamePage">
+    <!-- the game -->
+    <div class="world-Container">
+      <table id="newWorld" CELLSPACING=0>
+      </table>
     </div>
-    <div class="container num2">
-      <div class="axe"></div>
-      <div class="text">AXE</div>
-    </div>
-    <div class="container num3">
-      <div class="shovel"></div>
-      <div class="text">SHOVEL</div>
-    </div>
-    <div class="inventory">
-      <div class="inside-inventory"></div>
-    </div>
-  </nav>
+    <!-- tools -->
+    <nav class="tools">
+      <div class="container num1">
+        <div class="picaxe"></div>
+        <div class="text">PICAXE</div>
+      </div>
+      <div class="container num2">
+        <div class="axe"></div>
+        <div class="text">AXE</div>
+      </div>
+      <div class="container num3">
+        <div class="shovel"></div>
+        <div class="text">SHOVEL</div>
+      </div>
+      <div class="inventory">
+        <div class="inside-inventory"></div>
+      </div>
+      <div class="new">
+        <div class="newWorldGenerator"></div>
+      </div>
+    </nav>
+  </div>
 </body>
+
 </html>
