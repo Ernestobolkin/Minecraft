@@ -16,6 +16,9 @@
   border: 5px solid rgba(255, 255, 255, 0.253);
   margin-top: 3rem;
 }
+.tools .container:hover{
+  transform: scale(1.1);
+}
 
 .tools .container.green {
   border-color: green;
@@ -42,6 +45,7 @@
   background: wheat;
   text-align: center;
   padding: 3px 0;
+  cursor: pointer;
 }
 
 .axe {
@@ -70,6 +74,9 @@
   height: 50px;
   border: 2px solid whitesmoke;
 }
+.inventory:hover{
+  transform: scale(1.1);
+}
 nav .inventory.green {
   border-color: green;
 }
@@ -78,5 +85,25 @@ nav .inventory.green {
   width: 100%;
   height: 100%;
   cursor: grab;
+}
+
+.new{
+  width: 6rem;
+  height: min-content;
+  color: whitesmoke;
+  text-align: center;
+  text-align: center;
+  color: whitesmoke;
+  margin-top: 3rem;
+}
+.btn-type{
+  margin-top: 15px;
+  width: 100%;
+  border: 3px solid rgba(255, 255, 255, 0.596);
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btn-type:hover{
+  transform: scale(1.1);
 }
 

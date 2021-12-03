@@ -1,12 +1,10 @@
 const table = document.querySelector("#newWorld");
-// const picaxe = document.querySelector(".picaxe");
 const picHover = document.querySelector(".num1");
-// const axe = document.querySelector(".axe");
 const axHover = document.querySelector(".num2");
-// const shovel = document.querySelector(".shovel");
 const shHover = document.querySelector(".num3");
 const storage = document.querySelector(".inside-inventory");
 const invHover = document.querySelector(".inventory");
+const generate = document.querySelector(".restart");
 
 export const materials = {
   wood: "oak",
@@ -72,22 +70,23 @@ storage.addEventListener("click", () => {
   invHover.classList.add(materials.green);
   removeSelection();
   let clickInventory = true;
-    table.addEventListener("click", (event) => {
-      if (clickInventory && event.target.classList[1] == undefined) {
-        event.target.classList.add(storage.classList[1]);
-        storage.classList.remove(storage.classList[1]);
-        invHover.classList.remove(materials.green);
-        clickInventory = false;
-      }
-    });
+  table.addEventListener("click", (event) => {
+    if (clickInventory && event.target.classList[1] == undefined) {
+      event.target.classList.add(storage.classList[1]);
+      storage.classList.remove(storage.classList[1]);
+      invHover.classList.remove(materials.green);
+      clickInventory = false;
+      console.log(storage.classList);
+    }
+  });
 });
 
 // when the user mines, this function removes the block, adds to the storage and holds all the
 // block that the user removed inside the inventory
-//todo add inventory that the user can see and use all the blocks that he removed
+//todo add inventory that the user can see and use all the blocks that he/she removed
 const ifMine = (event) => {
   inventory.push(event.target.classList.value);
-  event.target.classList.remove(event.target.classList[1])
+  event.target.classList.remove(event.target.classList[1]);
   console.log(storage.classList);
   storage.classList = "";
   storage.classList.add(
@@ -151,26 +150,39 @@ const redBorder = (event) => {
 
 //creating a world
 // todo: add a random numbers so every time the world will be random
-for (let i = 0; i < 20; i++) {
-  const tr = document.createElement("tr");
-  table.appendChild(tr);
-  for (let j = 0; j < 20; j++) {
-    const td = document.createElement("td");
-    const div = document.createElement("div");
-    div.id = "x:" + j + "_" + "y:" + i;
-    div.className = "block";
-    td.appendChild(div);
-    tr.appendChild(td);
-    if (i === 15) {
-      div.className = "block grass";
-    }
-    if (i >= 16) {
-      div.className = "block dirt";
+const base = () => {
+  for (let i = 0; i < 20; i++) {
+    const tr = document.createElement("tr");
+    table.appendChild(tr);
+    for (let j = 0; j < 20; j++) {
+      const td = document.createElement("td");
+      const div = document.createElement("div");
+      div.id = "x:" + j + "_" + "y:" + i;
+      div.className = "block";
+      td.appendChild(div);
+      tr.appendChild(td);
+      if (i === 15) {
+        div.className = "block grass";
+      }
+      if (i >= 16) {
+        div.className = "block dirt";
+      }
     }
   }
-}
+};
+base();
 
-
+// restart button
+generate.addEventListener("click", () => {
+  storage.classList.remove(storage.classList[1])
+  removeAllClasses();
+  base();
+  creationOfElements();
+  removeSelection()
+});
+const removeAllClasses = () => {
+  table.innerHTML = "";
+};
 
 //creating a an elements like clouds stones and et..
 // todo: add a random numbers so every time the world will be random
@@ -185,46 +197,50 @@ function create(x, y, type) {
     document.getElementById(`x:${x}_y:${y}`).id = materials.cloud;
   }
 }
-// stone
-create(15, 14, "stone");
-create(16, 14, "stone");
-create(17, 14, "stone");
-create(17, 13, "stone");
-create(17, 12, "stone");
-create(16, 12, "stone");
-create(15, 12, "stone");
-create(15, 13, "stone");
-create(16, 13, "wood");
-// wood
-create(4, 11, "wood");
-create(4, 12, "wood");
-create(4, 13, "wood");
-create(4, 14, "wood");
-// leaves
-create(2, 10, "leaves");
-create(3, 10, "leaves");
-create(4, 10, "leaves");
-create(5, 10, "leaves");
-create(6, 10, "leaves");
-create(2, 9, "leaves");
-create(3, 9, "leaves");
-create(4, 9, "leaves");
-create(5, 9, "leaves");
-create(6, 9, "leaves");
-create(2, 8, "leaves");
-create(3, 8, "leaves");
-create(4, 8, "leaves");
-create(5, 8, "leaves");
-create(6, 8, "leaves");
-create(3, 7, "leaves");
-create(4, 7, "leaves");
-create(5, 7, "leaves");
-// clouds
-create(3, 2, "cloud");
-create(4, 2, "cloud");
-create(5, 2, "cloud");
-create(2, 3, "cloud");
-create(3, 3, "cloud");
-create(4, 3, "cloud");
-create(5, 3, "cloud");
-create(6, 3, "cloud");
+
+const creationOfElements = () => {
+  // stone
+  create(15, 14, "stone");
+  create(16, 14, "stone");
+  create(17, 14, "stone");
+  create(17, 13, "stone");
+  create(17, 12, "stone");
+  create(16, 12, "stone");
+  create(15, 12, "stone");
+  create(15, 13, "stone");
+  // wood
+  create(16, 13, "wood");
+  create(4, 11, "wood");
+  create(4, 12, "wood");
+  create(4, 13, "wood");
+  create(4, 14, "wood");
+  // leaves
+  create(2, 10, "leaves");
+  create(3, 10, "leaves");
+  create(4, 10, "leaves");
+  create(5, 10, "leaves");
+  create(6, 10, "leaves");
+  create(2, 9, "leaves");
+  create(3, 9, "leaves");
+  create(4, 9, "leaves");
+  create(5, 9, "leaves");
+  create(6, 9, "leaves");
+  create(2, 8, "leaves");
+  create(3, 8, "leaves");
+  create(4, 8, "leaves");
+  create(5, 8, "leaves");
+  create(6, 8, "leaves");
+  create(3, 7, "leaves");
+  create(4, 7, "leaves");
+  create(5, 7, "leaves");
+  // clouds
+  create(3, 2, "cloud");
+  create(4, 2, "cloud");
+  create(5, 2, "cloud");
+  create(2, 3, "cloud");
+  create(3, 3, "cloud");
+  create(4, 3, "cloud");
+  create(5, 3, "cloud");
+  create(6, 3, "cloud");
+};
+creationOfElements();
