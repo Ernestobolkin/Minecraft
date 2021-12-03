@@ -1,14 +1,13 @@
 const table = document.querySelector("#newWorld");
-const picHover = document.querySelector(".num1");
-const axHover = document.querySelector(".num2");
-const shHover = document.querySelector(".num3");
+const picaxe = document.querySelector(".num1");
+const axe = document.querySelector(".num2");
+const shovel = document.querySelector(".num3");
 const storage = document.querySelector(".inside-inventory");
 const invHover = document.querySelector(".inventory");
 const generate = document.querySelector(".restart");
 
 export const materials = {
   wood: "oak",
-  clouds: "cloud",
   dirt: "dirt",
   grass: "grass",
   cloud: "cloud",
@@ -16,22 +15,26 @@ export const materials = {
   stone: "stone",
   green: "green",
   red: "red",
+  sun: "sun",
+  cobblestone: "Cobblestone",
 };
-
 const inventory = [];
+const cloudEsterEgg = [];
 
 table.addEventListener("click", (event) => {
   mine(event);
   redBorder(event);
+  // console.log(inventory);
+  console.log(event.target);
 });
 
 // the tools functions
 
 let clickedPicax = false;
-picHover.addEventListener("click", () => {
-  picHover.classList.add(materials.green);
-  axHover.classList.remove(materials.green);
-  shHover.classList.remove(materials.green);
+picaxe.addEventListener("click", () => {
+  picaxe.classList.add(materials.green);
+  axe.classList.remove(materials.green);
+  shovel.classList.remove(materials.green);
   invHover.classList.remove(materials.green);
   clickedPicax = true;
   clickedAxe = false;
@@ -40,10 +43,10 @@ picHover.addEventListener("click", () => {
 });
 
 let clickedAxe = false;
-axHover.addEventListener("click", () => {
-  axHover.classList.add(materials.green);
-  picHover.classList.remove(materials.green);
-  shHover.classList.remove(materials.green);
+axe.addEventListener("click", () => {
+  axe.classList.add(materials.green);
+  picaxe.classList.remove(materials.green);
+  shovel.classList.remove(materials.green);
   invHover.classList.remove(materials.green);
   clickedAxe = true;
   clickedPicax = false;
@@ -52,10 +55,10 @@ axHover.addEventListener("click", () => {
 });
 
 let clickedShovel = false;
-shHover.addEventListener("click", () => {
-  shHover.classList.add(materials.green);
-  picHover.classList.remove(materials.green);
-  axHover.classList.remove(materials.green);
+shovel.addEventListener("click", () => {
+  shovel.classList.add(materials.green);
+  picaxe.classList.remove(materials.green);
+  axe.classList.remove(materials.green);
   invHover.classList.remove(materials.green);
   clickedShovel = true;
   clickedPicax = false;
@@ -67,32 +70,42 @@ shHover.addEventListener("click", () => {
 //todo add an inventory instade one storage place!!!
 let clickInventory = false;
 storage.addEventListener("click", () => {
-  invHover.classList.add(materials.green);
-  removeSelection();
-  let clickInventory = true;
-  table.addEventListener("click", (event) => {
-    if (clickInventory && event.target.classList[1] == undefined) {
-      event.target.classList.add(storage.classList[1]);
-      storage.classList.remove(storage.classList[1]);
-      invHover.classList.remove(materials.green);
-      clickInventory = false;
-      console.log(storage.classList);
-    }
-  });
+  if (storage.classList.length > 1) {
+    invHover.classList.add(materials.green);
+    removeSelection();
+    let clickInventory = true;
+    table.addEventListener("click", (event) => {
+      if (clickInventory && event.target.classList[1] == undefined) {
+        event.target.classList.add(storage.classList[1]);
+        storage.classList.remove(storage.classList[1]);
+        invHover.classList.remove(materials.green);
+        clickInventory = false;
+      }
+    });
+  }
 });
 
 // when the user mines, this function removes the block, adds to the storage and holds all the
 // block that the user removed inside the inventory
-//todo add inventory that the user can see and use all the blocks that he/she removed
+//todo add inventory that the user can see and use all the blocks that the user removed
 const ifMine = (event) => {
-  inventory.push(event.target.classList.value);
-  event.target.classList.remove(event.target.classList[1]);
-  console.log(storage.classList);
-  storage.classList = "";
-  storage.classList.add(
-    "inside-inventory",
-    inventory[inventory.length - 1].split(" ")[1]
-  );
+  if (event.target.classList[1] !== "stone") {
+    console.log(event.target.classList.value);
+    console.log("woks");
+    inventory.push(event.target.classList.value);
+    event.target.classList.remove(event.target.classList[1]);
+    storage.classList = "";
+    storage.classList.add(
+      "inside-inventory",
+      inventory[inventory.length - 1].split(" ")[1]
+    );
+  } else {
+    inventory.push(materials.cobblestone);
+    event.target.classList.remove(event.target.classList[1]);
+    storage.classList = "";
+    storage.classList.add("inside-inventory", materials.cobblestone);
+    console.log(storage.classList);
+  }
 };
 
 // when the user clicks the inventory, all the selection on the tools are removed
@@ -100,15 +113,19 @@ const removeSelection = () => {
   clickedShovel = false;
   clickedPicax = false;
   clickedAxe = false;
-  shHover.classList.remove(materials.green);
-  picHover.classList.remove(materials.green);
-  axHover.classList.remove(materials.green);
+  shovel.classList.remove(materials.green);
+  picaxe.classList.remove(materials.green);
+  axe.classList.remove(materials.green);
 };
 
 // checking what the user can mine with the tools
 const mine = (event) => {
   if (event.target.classList.value !== "block") {
-    if (clickedPicax && event.target.classList[1] == materials.stone) {
+    if (
+      clickedPicax &&
+      (event.target.classList[1] == materials.stone ||
+        event.target.classList[1] == materials.cobblestone)
+    ) {
       ifMine(event);
     } else if (
       clickedAxe &&
@@ -130,41 +147,40 @@ const mine = (event) => {
 const redBorder = (event) => {
   if (event.target.classList.value !== "block") {
     if (clickedPicax && event.target.classList.value !== "") {
-      picHover.classList.add(materials.red);
+      picaxe.classList.add(materials.red);
       setTimeout(function () {
-        picHover.classList.remove(materials.red);
+        picaxe.classList.remove(materials.red);
       }, 500);
     } else if (clickedAxe && event.target.classList.value !== "") {
-      axHover.classList.add(materials.red);
+      axe.classList.add(materials.red);
       setTimeout(function () {
-        axHover.classList.remove(materials.red);
+        axe.classList.remove(materials.red);
       }, 500);
     } else if (clickedShovel && event.target.classList.value !== "") {
-      shHover.classList.add(materials.red);
+      shovel.classList.add(materials.red);
       setTimeout(function () {
-        shHover.classList.remove(materials.red);
+        shovel.classList.remove(materials.red);
       }, 500);
     }
   }
 };
 
-//creating a world
-// todo: add a random numbers so every time the world will be random
+//creating a base. dirt grass and the sky
 const base = () => {
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i <= 19; i++) {
     const tr = document.createElement("tr");
     table.appendChild(tr);
-    for (let j = 0; j < 20; j++) {
+    for (let j = 0; j <= 25; j++) {
       const td = document.createElement("td");
       const div = document.createElement("div");
       div.id = "x:" + j + "_" + "y:" + i;
       div.className = "block";
       td.appendChild(div);
       tr.appendChild(td);
-      if (i === 15) {
+      if (i === 17) {
         div.className = "block grass";
       }
-      if (i >= 16) {
+      if (i >= 18) {
         div.className = "block dirt";
       }
     }
@@ -174,18 +190,21 @@ base();
 
 // restart button
 generate.addEventListener("click", () => {
-  storage.classList.remove(storage.classList[1])
+  inventory.splice(0, inventory.length);
+  storage.classList.remove(storage.classList[1]);
   removeAllClasses();
   base();
-  creationOfElements();
-  removeSelection()
+  removeSelection();
+  randomTree();
+  randomhouse();
+  randomCloud();
+  sun();
 });
 const removeAllClasses = () => {
   table.innerHTML = "";
 };
 
 //creating a an elements like clouds stones and et..
-// todo: add a random numbers so every time the world will be random
 function create(x, y, type) {
   if (type === "stone") {
     document.getElementById(`x:${x}_y:${y}`).classList.add(materials.stone);
@@ -194,53 +213,114 @@ function create(x, y, type) {
   } else if (type === "leaves") {
     document.getElementById(`x:${x}_y:${y}`).classList.add(materials.leaves);
   } else if (type === "cloud") {
+    cloudEsterEgg.push([x,y])
     document.getElementById(`x:${x}_y:${y}`).id = materials.cloud;
+  } else if (type === "sun") {
+    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.sun);
+
   }
 }
-
-const creationOfElements = () => {
-  // stone
-  create(15, 14, "stone");
-  create(16, 14, "stone");
-  create(17, 14, "stone");
-  create(17, 13, "stone");
-  create(17, 12, "stone");
-  create(16, 12, "stone");
-  create(15, 12, "stone");
-  create(15, 13, "stone");
+// random functions to create random xAxis for the trees
+function randomTree() {
+  let x = Math.floor(Math.random() * (11 - 0 + 1)) + 0;
   // wood
-  create(16, 13, "wood");
-  create(4, 11, "wood");
-  create(4, 12, "wood");
-  create(4, 13, "wood");
-  create(4, 14, "wood");
+  create(x + 2, 16, "wood");
+  create(x + 2, 15, "wood");
+  create(x + 2, 13, "wood");
+  create(x + 2, 14, "wood");
+  create(x + 2, 15, "wood");
+  create(x + 2, 16, "wood");
   // leaves
-  create(2, 10, "leaves");
-  create(3, 10, "leaves");
-  create(4, 10, "leaves");
-  create(5, 10, "leaves");
-  create(6, 10, "leaves");
-  create(2, 9, "leaves");
-  create(3, 9, "leaves");
-  create(4, 9, "leaves");
-  create(5, 9, "leaves");
-  create(6, 9, "leaves");
-  create(2, 8, "leaves");
-  create(3, 8, "leaves");
-  create(4, 8, "leaves");
-  create(5, 8, "leaves");
-  create(6, 8, "leaves");
-  create(3, 7, "leaves");
-  create(4, 7, "leaves");
-  create(5, 7, "leaves");
-  // clouds
-  create(3, 2, "cloud");
-  create(4, 2, "cloud");
-  create(5, 2, "cloud");
-  create(2, 3, "cloud");
-  create(3, 3, "cloud");
-  create(4, 3, "cloud");
-  create(5, 3, "cloud");
-  create(6, 3, "cloud");
+  create(x, 12, "leaves");
+  create(x + 1, 12, "leaves");
+  create(x + 2, 12, "leaves");
+  create(x + 3, 12, "leaves");
+  create(x + 4, 12, "leaves");
+  create(x, 11, "leaves");
+  create(x + 1, 11, "leaves");
+  create(x + 2, 11, "leaves");
+  create(x + 3, 11, "leaves");
+  create(x + 4, 11, "leaves");
+  create(x, 10, "leaves");
+  create(x + 1, 10, "leaves");
+  create(x + 2, 10, "leaves");
+  create(x + 3, 10, "leaves");
+  create(x + 4, 10, "leaves");
+  create(x + 1, 9, "leaves");
+  create(x + 2, 9, "leaves");
+  create(x + 3, 9, "leaves");
+}
+randomTree();
+
+// random functions to create random xAxis for the house
+function randomhouse() {
+  let x = Math.floor(Math.random() * (22 - 15 + 1)) + 15;
+  create(x, 14, "stone");
+  create(x + 1, 14, "stone");
+  create(x + 2, 14, "stone");
+  create(x, 15, "stone");
+  create(x + 1, 15, "wood");
+  create(x + 2, 15, "stone");
+  create(x, 16, "stone");
+  create(x + 1, 16, "wood");
+  create(x + 2, 16, "stone");
+
+  create(x + 1, 12, "wood");
+  create(x, 13, "wood");
+  create(x + 1, 13, "leaves");
+  create(x + 2, 13, "wood");
+  create(x - 1, 14, "wood");
+  create(x + 3, 14, "wood");
+}
+randomhouse();
+// random functions to create random xAxis for the clouds
+function randomCloud() {
+  function clouds1() {
+    let x = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
+    create(x + 1, 2, "cloud");
+    create(x + 2, 2, "cloud");
+    create(x + 3, 2, "cloud");
+    create(x, 3, "cloud");
+    create(x + 1, 3, "cloud");
+    create(x + 2, 3, "cloud");
+    create(x + 3, 3, "cloud");
+    create(x + 4, 3, "cloud");
+  }
+  clouds1();
+  function clouds2() {
+    let x = Math.floor(Math.random() * (21 - 12 + 1)) + 12;
+    create(x + 1, 5, "cloud");
+    create(x + 2, 5, "cloud");
+    create(x + 3, 5, "cloud");
+    create(x, 6, "cloud");
+    create(x + 1, 6, "cloud");
+    create(x + 2, 6, "cloud");
+    create(x + 3, 6, "cloud");
+    create(x + 4, 6, "cloud");
+  }
+  clouds2();
+}
+randomCloud();
+
+// todo Find a way to nake the sun move every couple seconds to the right..
+// warning. dont use for loops, it will crush the chrome!!
+let time = 0;
+let dt = new Date();
+const sun = () => {
+  if (dt.getSeconds() > 1 && time < 20) {
+    time++;
+    document
+      .getElementById(`x:0_y:${time - 1}`)
+      .classList.remove(materials.sun);
+    create(time, 0, "sun");
+  } else {
+    time = 0;
+  }
 };
-creationOfElements();
+sun();
+
+if(clickedShovel){
+  cloudEsterEgg.forEach((cloud,i)=>{
+    console.log(cloud);
+  })
+}

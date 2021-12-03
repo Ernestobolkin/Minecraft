@@ -64,3 +64,14 @@ table{
   background-size: cover;
   cursor: pointer;
 }
+
+.sun{
+  background-color: rgb(255, 255, 113);
+}
+.Cobblestone{
+  background-image: url("./Imgs/Cobblestone.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
