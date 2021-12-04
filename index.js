@@ -9,7 +9,7 @@ const chest = document.querySelector(".chest");
 const hidenInventory = document.querySelector(".inventory-container");
 const inventorySibling = document.querySelector(".inventory");
 const items = inventorySibling.querySelectorAll(".item");
-const worldBackground = document.querySelector('.world-Container')
+const worldBackground = document.querySelector(".world-Container");
 
 const materials = {
   wood: "oak",
@@ -26,10 +26,9 @@ const worldElements = {
   red: "red",
   sun: "sun",
   moon: "moon",
-}
+};
 
 const inventory = [];
-const cloudEsterEgg = [];
 
 table.addEventListener("click", (event) => {
   mine(event);
@@ -131,18 +130,21 @@ const mine = (event) => {
         event.target.classList[1] == materials.cobblestone)
     ) {
       ifMine(event);
+      pushInsideChest();
     } else if (
       clickedAxe &&
       (event.target.classList[1] == materials.wood ||
         event.target.classList[1] == materials.leaves)
     ) {
       ifMine(event);
+      pushInsideChest();
     } else if (
       clickedShovel &&
       (event.target.classList[1] == materials.dirt ||
         event.target.classList[1] == materials.grass)
     ) {
       ifMine(event);
+      pushInsideChest();
     }
   }
 };
@@ -199,7 +201,7 @@ generate.addEventListener("click", () => {
   removeAllClasses();
   base();
   removeSelection();
-  myRandom()
+  myRandom();
 });
 const removeAllClasses = () => {
   table.innerHTML = "";
@@ -207,44 +209,48 @@ const removeAllClasses = () => {
 
 // create day and night
 let time = 0;
-let sunSwitch = true
+let sunSwitch = true;
 const sun = () => {
   if (sunSwitch && time <= 24) {
     time++;
-    document.getElementById(`x:${time -1}_y:0`).classList.remove(worldElements.sun);
+    document
+      .getElementById(`x:${time - 1}_y:0`)
+      .classList.remove(worldElements.sun);
     create(time, 0, "sun");
     worldBackground.style.background = "lightblue";
   } else {
     document.getElementById(`x:25_y:0`).classList.remove(worldElements.sun);
     time = 0;
-    sunSwitch = false
-    moonSwitch = true
+    sunSwitch = false;
+    moonSwitch = true;
   }
 };
 
-let moonSwitch = true
+let moonSwitch = true;
 const moon = () => {
   if (moonSwitch && time <= 24) {
     time++;
-    document.getElementById(`x:${time -1}_y:0`).classList.remove(worldElements.moon);
+    document
+      .getElementById(`x:${time - 1}_y:0`)
+      .classList.remove(worldElements.moon);
     create(time, 0, "moon");
     worldBackground.style.background = "rgb(32, 38, 77)";
   } else {
     document.getElementById(`x:25_y:0`).classList.remove(worldElements.moon);
     time = 0;
-    moonSwitch = false
-    sunSwitch = true
+    moonSwitch = false;
+    sunSwitch = true;
   }
 };
 
 // loop function
 setInterval(() => {
-  if(sunSwitch){
+  if (sunSwitch) {
     sun();
-  }else{
-  moon();
+  } else {
+    moon();
   }
-}, 2500);
+}, 500);
 
 // todo finnish the chest part
 // chest inventory prototype
@@ -254,22 +260,24 @@ chest.addEventListener("click", () => {
   } else {
     hidenInventory.style.display = "none";
   }
-  pushInsideChest();
 });
 
 const pushInsideChest = () => {
-  items.forEach((item) => {
-    if (inventory.length !== 0) {
-      if (item.classList[2] === undefined) {
-        // if (items[0].classList.length > 2) {
-          console.log(inventory[inventory.length - 1].split(" ")[1]);
-          items[0].classList.add(inventory[inventory.length - 1].split(" ")[1])
-        // }
-      }
+  if (inventory.length !== 0) {
+    if (items[0].classList.length < 3) {
+      // item number 0
+      items[0].classList.add(inventory[inventory.length - 1].split(" ")[1]);
+      console.log(items[0].classList);
+      // item number 1
+    } else if (items[0].classList != items[1].classList) {
+      items[1].classList.add(inventory[inventory.length - 1].split(" ")[1]);
+      // item number 2
     }
-  });
+  }
 };
 
+
 // else if(items[1].classList.length > 2){
+// else if()
 //   console.log(inventory[inventory.length - 1].split(" ")[1]);
 //   items[1].classList.add(inventory[inventory.length - 1].split(" ")[1])
