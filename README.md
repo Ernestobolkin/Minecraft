@@ -7,8 +7,11 @@ The minecraft that you can see here is based on the original game, but in 2d.
 In the actual game the user has more options, so I decided to take the basic things:
 
 **1.Mining trees**
+
 **2.Mining dirt**
+
 **3.Mining stone**
+
 **4.building**
 
 The mining functions come with the specific tools.
