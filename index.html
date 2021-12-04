@@ -6,13 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minecraft</title>
-
-  <script type="module" src="./index.js" defer></script>
   <script src="./menu.js" defer></script>
-
   <link rel="stylesheet" href="./loadingScrean.css">
   <link rel="stylesheet" href="./navBar.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./chest.css">
 </head>
 
 <body>
@@ -47,17 +45,29 @@
         <div class="shovel"></div>
         <div class="text">SHOVEL</div>
       </div>
-      <div class="inventory">
-        <div class="inside-inventory"></div>
+      <div class="last-block">
+        <div class="inside-of-block"></div>
       </div>
       <div class="chest">
         <div class="inside-chest"></div>
+      </div>
+      <div class="inventory-container">
+        <div class="inventory">
+          <div class="item n1"></div>
+          <div class="item n2"></div>
+          <div class="item n3"></div>
+          <div class="item n4"></div>
+          <div class="item n5"></div>
+          <div class="item n6"></div>
+        </div>
       </div>
       <div class="new">
         <div class="restart btn-type">restart</div>
       </div>
     </nav>
   </div>
+  <script src="./index.js"></script>
+  <script src="create.js"></script>
 </body>
 
 </html>

@@ -68,6 +68,9 @@ table{
 .sun{
   background-color: rgb(255, 255, 113);
 }
+.moon{
+  background-color: rgb(236, 238, 255);
+}
 .Cobblestone{
   background-image: url("./Imgs/Cobblestone.png");
   background-position: center;

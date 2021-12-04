@@ -67,20 +67,20 @@
   cursor: pointer;
 }
 
-.inventory {
+.last-block {
   margin-top: 3rem;
   width: 50px;
   height: 50px;
   border: 2px solid whitesmoke;
 }
-.inventory:hover {
+.last-block:hover {
   transform: scale(1.1);
 }
-nav .inventory.green {
+nav .last-block.green {
   border-color: green;
 }
 
-.inside-inventory {
+.inside-of-block {
   width: 100%;
   height: 100%;
   cursor: grab;
@@ -91,9 +91,8 @@ nav .inventory.green {
   height: min-content;
   color: whitesmoke;
   text-align: center;
-  text-align: center;
-  color: whitesmoke;
 }
+
 .btn-type {
   margin-top: 3rem;
   width: 100%;
@@ -101,6 +100,7 @@ nav .inventory.green {
   cursor: pointer;
   border-radius: 5px;
 }
+
 .btn-type:hover {
   transform: scale(1.1);
 }
@@ -113,6 +113,7 @@ nav .inventory.green {
   border: 3px solid rgba(255, 255, 255, 0.596);
   cursor: pointer;
 }
+
 .inside-chest{
   width: 100%;
   height: 100%;

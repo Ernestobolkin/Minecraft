@@ -2,40 +2,49 @@ const table = document.querySelector("#newWorld");
 const picaxe = document.querySelector(".num1");
 const axe = document.querySelector(".num2");
 const shovel = document.querySelector(".num3");
-const storage = document.querySelector(".inside-inventory");
-const invHover = document.querySelector(".inventory");
+const storage = document.querySelector(".inside-of-block");
+const invHover = document.querySelector(".last-block");
 const generate = document.querySelector(".restart");
 
-export const materials = {
+const chest = document.querySelector(".chest");
+const hidenInventory = document.querySelector(".inventory-container");
+const inventorySibling = document.querySelector(".inventory");
+const items = inventorySibling.querySelectorAll(".item");
+
+const worldBackground = document.querySelector('.world-Container')
+
+const materials = {
   wood: "oak",
   dirt: "dirt",
   grass: "grass",
   cloud: "cloud",
   leaves: "leaves",
   stone: "stone",
+  cobblestone: "Cobblestone",
+};
+
+const worldMaterials = {
   green: "green",
   red: "red",
   sun: "sun",
-  cobblestone: "Cobblestone",
-};
+  moon: "moon",
+}
 const inventory = [];
 const cloudEsterEgg = [];
 
 table.addEventListener("click", (event) => {
   mine(event);
   redBorder(event);
-  // console.log(inventory);
-  console.log(event.target);
 });
 
 // the tools functions
 
 let clickedPicax = false;
 picaxe.addEventListener("click", () => {
-  picaxe.classList.add(materials.green);
-  axe.classList.remove(materials.green);
-  shovel.classList.remove(materials.green);
-  invHover.classList.remove(materials.green);
+  picaxe.classList.add(worldMaterials.green);
+  axe.classList.remove(worldMaterials.green);
+  shovel.classList.remove(worldMaterials.green);
+  invHover.classList.remove(worldMaterials.green);
   clickedPicax = true;
   clickedAxe = false;
   clickedShovel = false;
@@ -44,10 +53,10 @@ picaxe.addEventListener("click", () => {
 
 let clickedAxe = false;
 axe.addEventListener("click", () => {
-  axe.classList.add(materials.green);
-  picaxe.classList.remove(materials.green);
-  shovel.classList.remove(materials.green);
-  invHover.classList.remove(materials.green);
+  axe.classList.add(worldMaterials.green);
+  picaxe.classList.remove(worldMaterials.green);
+  shovel.classList.remove(worldMaterials.green);
+  invHover.classList.remove(worldMaterials.green);
   clickedAxe = true;
   clickedPicax = false;
   clickedShovel = false;
@@ -56,10 +65,10 @@ axe.addEventListener("click", () => {
 
 let clickedShovel = false;
 shovel.addEventListener("click", () => {
-  shovel.classList.add(materials.green);
-  picaxe.classList.remove(materials.green);
-  axe.classList.remove(materials.green);
-  invHover.classList.remove(materials.green);
+  shovel.classList.add(worldMaterials.green);
+  picaxe.classList.remove(worldMaterials.green);
+  axe.classList.remove(worldMaterials.green);
+  invHover.classList.remove(worldMaterials.green);
   clickedShovel = true;
   clickedPicax = false;
   clickedAxe = false;
@@ -71,14 +80,14 @@ shovel.addEventListener("click", () => {
 let clickInventory = false;
 storage.addEventListener("click", () => {
   if (storage.classList.length > 1) {
-    invHover.classList.add(materials.green);
+    invHover.classList.add(worldMaterials.green);
     removeSelection();
     let clickInventory = true;
     table.addEventListener("click", (event) => {
       if (clickInventory && event.target.classList[1] == undefined) {
         event.target.classList.add(storage.classList[1]);
         storage.classList.remove(storage.classList[1]);
-        invHover.classList.remove(materials.green);
+        invHover.classList.remove(worldMaterials.green);
         clickInventory = false;
       }
     });
@@ -90,21 +99,19 @@ storage.addEventListener("click", () => {
 //todo add inventory that the user can see and use all the blocks that the user removed
 const ifMine = (event) => {
   if (event.target.classList[1] !== "stone") {
-    console.log(event.target.classList.value);
-    console.log("woks");
     inventory.push(event.target.classList.value);
     event.target.classList.remove(event.target.classList[1]);
     storage.classList = "";
     storage.classList.add(
-      "inside-inventory",
+      "inside-of-block",
       inventory[inventory.length - 1].split(" ")[1]
     );
   } else {
     inventory.push(materials.cobblestone);
     event.target.classList.remove(event.target.classList[1]);
     storage.classList = "";
-    storage.classList.add("inside-inventory", materials.cobblestone);
-    console.log(storage.classList);
+    storage.classList.add("inside-of-block", materials.cobblestone);
+    // console.log(storage.classList);
   }
 };
 
@@ -113,9 +120,9 @@ const removeSelection = () => {
   clickedShovel = false;
   clickedPicax = false;
   clickedAxe = false;
-  shovel.classList.remove(materials.green);
-  picaxe.classList.remove(materials.green);
-  axe.classList.remove(materials.green);
+  shovel.classList.remove(worldMaterials.green);
+  picaxe.classList.remove(worldMaterials.green);
+  axe.classList.remove(worldMaterials.green);
 };
 
 // checking what the user can mine with the tools
@@ -147,19 +154,19 @@ const mine = (event) => {
 const redBorder = (event) => {
   if (event.target.classList.value !== "block") {
     if (clickedPicax && event.target.classList.value !== "") {
-      picaxe.classList.add(materials.red);
+      picaxe.classList.add(worldMaterials.red);
       setTimeout(function () {
-        picaxe.classList.remove(materials.red);
+        picaxe.classList.remove(worldMaterials.red);
       }, 500);
     } else if (clickedAxe && event.target.classList.value !== "") {
-      axe.classList.add(materials.red);
+      axe.classList.add(worldMaterials.red);
       setTimeout(function () {
-        axe.classList.remove(materials.red);
+        axe.classList.remove(worldMaterials.red);
       }, 500);
     } else if (clickedShovel && event.target.classList.value !== "") {
-      shovel.classList.add(materials.red);
+      shovel.classList.add(worldMaterials.red);
       setTimeout(function () {
-        shovel.classList.remove(materials.red);
+        shovel.classList.remove(worldMaterials.red);
       }, 500);
     }
   }
@@ -198,129 +205,75 @@ generate.addEventListener("click", () => {
   randomTree();
   randomhouse();
   randomCloud();
-  sun();
 });
 const removeAllClasses = () => {
   table.innerHTML = "";
 };
 
-//creating a an elements like clouds stones and et..
-function create(x, y, type) {
-  if (type === "stone") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.stone);
-  } else if (type === "wood") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.wood);
-  } else if (type === "leaves") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.leaves);
-  } else if (type === "cloud") {
-    cloudEsterEgg.push([x,y])
-    document.getElementById(`x:${x}_y:${y}`).id = materials.cloud;
-  } else if (type === "sun") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.sun);
-
-  }
-}
-// random functions to create random xAxis for the trees
-function randomTree() {
-  let x = Math.floor(Math.random() * (11 - 0 + 1)) + 0;
-  // wood
-  create(x + 2, 16, "wood");
-  create(x + 2, 15, "wood");
-  create(x + 2, 13, "wood");
-  create(x + 2, 14, "wood");
-  create(x + 2, 15, "wood");
-  create(x + 2, 16, "wood");
-  // leaves
-  create(x, 12, "leaves");
-  create(x + 1, 12, "leaves");
-  create(x + 2, 12, "leaves");
-  create(x + 3, 12, "leaves");
-  create(x + 4, 12, "leaves");
-  create(x, 11, "leaves");
-  create(x + 1, 11, "leaves");
-  create(x + 2, 11, "leaves");
-  create(x + 3, 11, "leaves");
-  create(x + 4, 11, "leaves");
-  create(x, 10, "leaves");
-  create(x + 1, 10, "leaves");
-  create(x + 2, 10, "leaves");
-  create(x + 3, 10, "leaves");
-  create(x + 4, 10, "leaves");
-  create(x + 1, 9, "leaves");
-  create(x + 2, 9, "leaves");
-  create(x + 3, 9, "leaves");
-}
-randomTree();
-
-// random functions to create random xAxis for the house
-function randomhouse() {
-  let x = Math.floor(Math.random() * (22 - 15 + 1)) + 15;
-  create(x, 14, "stone");
-  create(x + 1, 14, "stone");
-  create(x + 2, 14, "stone");
-  create(x, 15, "stone");
-  create(x + 1, 15, "wood");
-  create(x + 2, 15, "stone");
-  create(x, 16, "stone");
-  create(x + 1, 16, "wood");
-  create(x + 2, 16, "stone");
-
-  create(x + 1, 12, "wood");
-  create(x, 13, "wood");
-  create(x + 1, 13, "leaves");
-  create(x + 2, 13, "wood");
-  create(x - 1, 14, "wood");
-  create(x + 3, 14, "wood");
-}
-randomhouse();
-// random functions to create random xAxis for the clouds
-function randomCloud() {
-  function clouds1() {
-    let x = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
-    create(x + 1, 2, "cloud");
-    create(x + 2, 2, "cloud");
-    create(x + 3, 2, "cloud");
-    create(x, 3, "cloud");
-    create(x + 1, 3, "cloud");
-    create(x + 2, 3, "cloud");
-    create(x + 3, 3, "cloud");
-    create(x + 4, 3, "cloud");
-  }
-  clouds1();
-  function clouds2() {
-    let x = Math.floor(Math.random() * (21 - 12 + 1)) + 12;
-    create(x + 1, 5, "cloud");
-    create(x + 2, 5, "cloud");
-    create(x + 3, 5, "cloud");
-    create(x, 6, "cloud");
-    create(x + 1, 6, "cloud");
-    create(x + 2, 6, "cloud");
-    create(x + 3, 6, "cloud");
-    create(x + 4, 6, "cloud");
-  }
-  clouds2();
-}
-randomCloud();
-
-// todo Find a way to nake the sun move every couple seconds to the right..
-// warning. dont use for loops, it will crush the chrome!!
+// create day and night
 let time = 0;
-let dt = new Date();
+let sunSwitch = true
 const sun = () => {
-  if (dt.getSeconds() > 1 && time < 20) {
+  if (sunSwitch && time <= 24) {
     time++;
-    document
-      .getElementById(`x:0_y:${time - 1}`)
-      .classList.remove(materials.sun);
+    document.getElementById(`x:${time -1}_y:0`).classList.remove(worldMaterials.sun);
     create(time, 0, "sun");
+    worldBackground.style.background = "lightblue";
   } else {
+    document.getElementById(`x:25_y:0`).classList.remove(worldMaterials.sun);
     time = 0;
+    sunSwitch = false
+    moonSwitch = true
   }
 };
-sun();
 
-if(clickedShovel){
-  cloudEsterEgg.forEach((cloud,i)=>{
-    console.log(cloud);
-  })
-}
+let moonSwitch = true
+const moon = () => {
+  if (moonSwitch && time <= 24) {
+    time++;
+    document.getElementById(`x:${time -1}_y:0`).classList.remove(worldMaterials.moon);
+    create(time, 0, "moon");
+    worldBackground.style.background = "rgb(32, 38, 77)";
+  } else {
+    document.getElementById(`x:25_y:0`).classList.remove(worldMaterials.moon);
+    time = 0;
+    moonSwitch = false
+    sunSwitch = true
+  }
+};
+
+setInterval(() => {
+  if(sunSwitch){
+    sun();
+  }else{
+  moon();
+  }
+}, 2500);
+
+
+// chest inventory
+chest.addEventListener("click", () => {
+  if (hidenInventory.style.display === "none") {
+    hidenInventory.style.display = "block";
+  } else {
+    hidenInventory.style.display = "none";
+  }
+  pushInsideChest();
+});
+
+const pushInsideChest = () => {
+  items.forEach((item) => {
+    if (inventory.length !== 0) {
+      if (item.classList[2] === undefined) {
+        // if (items[0].classList.length > 2) {
+          console.log(inventory[inventory.length - 1].split(" ")[1]);
+          items[0].classList.add(inventory[inventory.length - 1].split(" ")[1])
+        // }
+      }
+    }
+  });
+};
+
+// else if(items[1].classList.length > 2){
+//   console.log(inventory[inventory.length - 1].split(" ")[1]);
+//   items[1].classList.add(inventory[inventory.length - 1].split(" ")[1])
