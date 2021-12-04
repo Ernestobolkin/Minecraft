@@ -1,7 +1,7 @@
-#Minecraft 2d Game
+# Minecraft 2d Game
 
 
-##About the game:
+## About the game:
 
 Minecraft that you can see here is based on the original game, but in 2d.
 In the actual game the user has more options, so I decided to take the basic things.
@@ -19,7 +19,7 @@ The user can mine trees with the axe, the dirt you need a shovel and stone is pi
 By the right side, where the nave bar is and all the tools, there is a little block that contains the last block that was mined. when you click on it, it gives the user the option to place the block on the map.
 
 
-##Building the world:
+## Building the world:
 
 Behind the scenes I have a function that gives a random options to the clouds, trees and the houses. so the user can generate a random world.
 The game is build with 20 rows by 25 columns, 1 row of grass and 2 rows of dirt.
