@@ -7,3 +7,4 @@ startBtn.addEventListener("click", ()=>{
   menu.style.display = "none"
   gamePage.style.display = "block"
 })
+

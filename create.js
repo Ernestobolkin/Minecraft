@@ -15,8 +15,10 @@ function create(x, y, type) {
     document.getElementById(`x:${x}_y:${y}`).classList.add(worldMaterials.moon);
   }
 }
+
+
 // random functions to create random xAxis for the trees
-function randomTree() {
+const tree1 = () => {
   let x = Math.floor(Math.random() * (11 - 0 + 1)) + 0;
   // wood
   create(x + 2, 16, "wood");
@@ -44,13 +46,37 @@ function randomTree() {
   create(x + 1, 9, "leaves");
   create(x + 2, 9, "leaves");
   create(x + 3, 9, "leaves");
+};
+
+function tree2() {
+  let x = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+  // wood
+  create(x + 2, 14, "wood");
+  create(x + 2, 15, "wood");
+  create(x + 2, 16, "wood");
+  // leaves
+  create(x - 1, 13, "leaves");
+  create(x, 13, "leaves");
+  create(x + 1, 13, "leaves");
+  create(x + 2, 13, "leaves");
+  create(x + 3, 13, "leaves");
+  create(x + 4, 13, "leaves");
+  create(x + 5, 13, "leaves");
+  create(x, 12, "leaves");
+  create(x + 1, 12, "leaves");
+  create(x + 2, 12, "leaves");
+  create(x + 3, 12, "leaves");
+  create(x + 4, 12, "leaves");
+  create(x + 1, 11, "leaves");
+  create(x + 2, 11, "leaves");
+  create(x + 3, 11, "leaves");
+  create(x + 2, 10, "leaves");
 }
-randomTree();
 
 // random functions to create random xAxis for the house
-function randomhouse() {
-  let x = Math.floor(Math.random() * (22 - 15 + 1)) + 15;
 
+function house1() {
+  let x = Math.floor(Math.random() * (22 - 15 + 1)) + 15;
   create(x, 14, "stone");
   create(x + 1, 14, "stone");
   create(x + 2, 14, "stone");
@@ -60,7 +86,6 @@ function randomhouse() {
   create(x, 16, "stone");
   create(x + 1, 16, "wood");
   create(x + 2, 16, "stone");
-
   create(x + 1, 12, "wood");
   create(x, 13, "wood");
   create(x + 1, 13, "leaves");
@@ -68,32 +93,57 @@ function randomhouse() {
   create(x - 1, 14, "wood");
   create(x + 3, 14, "wood");
 }
-randomhouse();
-// random functions to create random xAxis for the clouds
-function randomCloud() {
-  function clouds1() {
-    let x = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
-    create(x + 1, 2, "cloud");
-    create(x + 2, 2, "cloud");
-    create(x + 3, 2, "cloud");
-    create(x, 3, "cloud");
-    create(x + 1, 3, "cloud");
-    create(x + 2, 3, "cloud");
-    create(x + 3, 3, "cloud");
-    create(x + 4, 3, "cloud");
-  }
-  clouds1();
-  function clouds2() {
-    let x = Math.floor(Math.random() * (21 - 12 + 1)) + 12;
-    create(x + 1, 5, "cloud");
-    create(x + 2, 5, "cloud");
-    create(x + 3, 5, "cloud");
-    create(x, 6, "cloud");
-    create(x + 1, 6, "cloud");
-    create(x + 2, 6, "cloud");
-    create(x + 3, 6, "cloud");
-    create(x + 4, 6, "cloud");
-  }
-  clouds2();
+
+function house2() {
+  let x = Math.floor(Math.random() * (22 - 16 + 1)) + 15;
+  create(x, 14, "stone");
+  create(x + 1, 14, "wood");
+  create(x + 2, 14, "wood");
+  create(x + 3, 14, "stone");
+  create(x, 15, "wood");
+  create(x, 16, "wood");
+  create(x + 3, 15, "wood");
+  create(x + 3, 16, "wood");
+  create(x + 1, 15, "leaves");
+  create(x + 1, 16, "leaves");
+  create(x + 2, 15, "leaves");
+  create(x + 2, 16, "leaves");
 }
-randomCloud();
+// random functions to create random xAxis for the clouds
+function clouds1() {
+  let x = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
+  create(x + 1, 2, "cloud");
+  create(x + 2, 2, "cloud");
+  create(x + 3, 2, "cloud");
+  create(x, 3, "cloud");
+  create(x + 1, 3, "cloud");
+  create(x + 2, 3, "cloud");
+  create(x + 3, 3, "cloud");
+  create(x + 4, 3, "cloud");
+}
+function clouds2() {
+  let x = Math.floor(Math.random() * (21 - 12 + 1)) + 12;
+  
+  create(x + 1, 5, "cloud");
+  create(x + 2, 5, "cloud");
+  create(x + 3, 5, "cloud");
+  create(x, 6, "cloud");
+  create(x + 1, 6, "cloud");
+  create(x + 2, 6, "cloud");
+  create(x + 3, 6, "cloud");
+  create(x + 4, 6, "cloud");
+  console.log("works");
+}
+const trees = [tree1, tree2]
+const houeses = [house1, house2]
+
+
+const myRandom = () => {
+  let x = Math.floor(Math.random() * 2);
+console.log(x);
+  trees[x]();
+  houeses[x]();
+  clouds1()
+  clouds2()
+};
+myRandom()

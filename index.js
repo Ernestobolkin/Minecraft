@@ -202,9 +202,7 @@ generate.addEventListener("click", () => {
   removeAllClasses();
   base();
   removeSelection();
-  randomTree();
-  randomhouse();
-  randomCloud();
+  myRandom()
 });
 const removeAllClasses = () => {
   table.innerHTML = "";
@@ -241,7 +239,6 @@ const moon = () => {
     sunSwitch = true
   }
 };
-
 setInterval(() => {
   if(sunSwitch){
     sun();

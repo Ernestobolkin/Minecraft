@@ -1,16 +1,16 @@
 .gamePage{
-  display: none;
+  /* display: none; */
 }
 
 .title-screen{
   width: 100vw;
   height: 100vh;
-  /* display: none; */
+  display: none;
   background-image: url('/Imgs/wallpaper.jpeg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center
 }
