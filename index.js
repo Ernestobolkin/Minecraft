@@ -174,7 +174,7 @@ const redBorder = (event) => {
 
 //creating a base. dirt grass and the sky
 const base = () => {
-  for (let i = 0; i <= 19; i++) {
+  for (let i = 0; i <= 20; i++) {
     const tr = document.createElement("tr");
     table.appendChild(tr);
     for (let j = 0; j <= 25; j++) {
@@ -245,7 +245,7 @@ setInterval(() => {
   }else{
   moon();
   }
-}, 2500);
+}, 500);
 
 
 // chest inventory
