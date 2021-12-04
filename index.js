@@ -5,12 +5,10 @@ const shovel = document.querySelector(".num3");
 const storage = document.querySelector(".inside-of-block");
 const invHover = document.querySelector(".last-block");
 const generate = document.querySelector(".restart");
-
 const chest = document.querySelector(".chest");
 const hidenInventory = document.querySelector(".inventory-container");
 const inventorySibling = document.querySelector(".inventory");
 const items = inventorySibling.querySelectorAll(".item");
-
 const worldBackground = document.querySelector('.world-Container')
 
 const materials = {
@@ -23,12 +21,13 @@ const materials = {
   cobblestone: "Cobblestone",
 };
 
-const worldMaterials = {
+const worldElements = {
   green: "green",
   red: "red",
   sun: "sun",
   moon: "moon",
 }
+
 const inventory = [];
 const cloudEsterEgg = [];
 
@@ -38,13 +37,12 @@ table.addEventListener("click", (event) => {
 });
 
 // the tools functions
-
 let clickedPicax = false;
 picaxe.addEventListener("click", () => {
-  picaxe.classList.add(worldMaterials.green);
-  axe.classList.remove(worldMaterials.green);
-  shovel.classList.remove(worldMaterials.green);
-  invHover.classList.remove(worldMaterials.green);
+  picaxe.classList.add(worldElements.green);
+  axe.classList.remove(worldElements.green);
+  shovel.classList.remove(worldElements.green);
+  invHover.classList.remove(worldElements.green);
   clickedPicax = true;
   clickedAxe = false;
   clickedShovel = false;
@@ -53,10 +51,10 @@ picaxe.addEventListener("click", () => {
 
 let clickedAxe = false;
 axe.addEventListener("click", () => {
-  axe.classList.add(worldMaterials.green);
-  picaxe.classList.remove(worldMaterials.green);
-  shovel.classList.remove(worldMaterials.green);
-  invHover.classList.remove(worldMaterials.green);
+  axe.classList.add(worldElements.green);
+  picaxe.classList.remove(worldElements.green);
+  shovel.classList.remove(worldElements.green);
+  invHover.classList.remove(worldElements.green);
   clickedAxe = true;
   clickedPicax = false;
   clickedShovel = false;
@@ -65,29 +63,29 @@ axe.addEventListener("click", () => {
 
 let clickedShovel = false;
 shovel.addEventListener("click", () => {
-  shovel.classList.add(worldMaterials.green);
-  picaxe.classList.remove(worldMaterials.green);
-  axe.classList.remove(worldMaterials.green);
-  invHover.classList.remove(worldMaterials.green);
+  shovel.classList.add(worldElements.green);
+  picaxe.classList.remove(worldElements.green);
+  axe.classList.remove(worldElements.green);
+  invHover.classList.remove(worldElements.green);
   clickedShovel = true;
   clickedPicax = false;
   clickedAxe = false;
   clickInventory = false;
 });
 
-// gives the user to build back the last element that he removed
+// gives the user optin to build back the last element that he removed
 //todo add an inventory instade one storage place!!!
 let clickInventory = false;
 storage.addEventListener("click", () => {
   if (storage.classList.length > 1) {
-    invHover.classList.add(worldMaterials.green);
+    invHover.classList.add(worldElements.green);
     removeSelection();
     let clickInventory = true;
     table.addEventListener("click", (event) => {
       if (clickInventory && event.target.classList[1] == undefined) {
         event.target.classList.add(storage.classList[1]);
         storage.classList.remove(storage.classList[1]);
-        invHover.classList.remove(worldMaterials.green);
+        invHover.classList.remove(worldElements.green);
         clickInventory = false;
       }
     });
@@ -111,7 +109,6 @@ const ifMine = (event) => {
     event.target.classList.remove(event.target.classList[1]);
     storage.classList = "";
     storage.classList.add("inside-of-block", materials.cobblestone);
-    // console.log(storage.classList);
   }
 };
 
@@ -120,9 +117,9 @@ const removeSelection = () => {
   clickedShovel = false;
   clickedPicax = false;
   clickedAxe = false;
-  shovel.classList.remove(worldMaterials.green);
-  picaxe.classList.remove(worldMaterials.green);
-  axe.classList.remove(worldMaterials.green);
+  shovel.classList.remove(worldElements.green);
+  picaxe.classList.remove(worldElements.green);
+  axe.classList.remove(worldElements.green);
 };
 
 // checking what the user can mine with the tools
@@ -150,23 +147,23 @@ const mine = (event) => {
   }
 };
 
-// when the user tries to remove block wuth the wrong tool, this fuunction shows a red border on the tool.
+// when the user tries to remove block with the wrong tool, this fuunction shows a red border on the tool.
 const redBorder = (event) => {
   if (event.target.classList.value !== "block") {
     if (clickedPicax && event.target.classList.value !== "") {
-      picaxe.classList.add(worldMaterials.red);
+      picaxe.classList.add(worldElements.red);
       setTimeout(function () {
-        picaxe.classList.remove(worldMaterials.red);
+        picaxe.classList.remove(worldElements.red);
       }, 500);
     } else if (clickedAxe && event.target.classList.value !== "") {
-      axe.classList.add(worldMaterials.red);
+      axe.classList.add(worldElements.red);
       setTimeout(function () {
-        axe.classList.remove(worldMaterials.red);
+        axe.classList.remove(worldElements.red);
       }, 500);
     } else if (clickedShovel && event.target.classList.value !== "") {
-      shovel.classList.add(worldMaterials.red);
+      shovel.classList.add(worldElements.red);
       setTimeout(function () {
-        shovel.classList.remove(worldMaterials.red);
+        shovel.classList.remove(worldElements.red);
       }, 500);
     }
   }
@@ -214,11 +211,11 @@ let sunSwitch = true
 const sun = () => {
   if (sunSwitch && time <= 24) {
     time++;
-    document.getElementById(`x:${time -1}_y:0`).classList.remove(worldMaterials.sun);
+    document.getElementById(`x:${time -1}_y:0`).classList.remove(worldElements.sun);
     create(time, 0, "sun");
     worldBackground.style.background = "lightblue";
   } else {
-    document.getElementById(`x:25_y:0`).classList.remove(worldMaterials.sun);
+    document.getElementById(`x:25_y:0`).classList.remove(worldElements.sun);
     time = 0;
     sunSwitch = false
     moonSwitch = true
@@ -229,26 +226,28 @@ let moonSwitch = true
 const moon = () => {
   if (moonSwitch && time <= 24) {
     time++;
-    document.getElementById(`x:${time -1}_y:0`).classList.remove(worldMaterials.moon);
+    document.getElementById(`x:${time -1}_y:0`).classList.remove(worldElements.moon);
     create(time, 0, "moon");
     worldBackground.style.background = "rgb(32, 38, 77)";
   } else {
-    document.getElementById(`x:25_y:0`).classList.remove(worldMaterials.moon);
+    document.getElementById(`x:25_y:0`).classList.remove(worldElements.moon);
     time = 0;
     moonSwitch = false
     sunSwitch = true
   }
 };
+
+// loop function
 setInterval(() => {
   if(sunSwitch){
     sun();
   }else{
   moon();
   }
-}, 500);
+}, 2500);
 
-
-// chest inventory
+// todo finnish the chest part
+// chest inventory prototype
 chest.addEventListener("click", () => {
   if (hidenInventory.style.display === "none") {
     hidenInventory.style.display = "block";

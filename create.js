@@ -10,9 +10,9 @@ function create(x, y, type) {
     cloudEsterEgg.push([x, y]);
     document.getElementById(`x:${x}_y:${y}`).id = materials.cloud;
   } else if (type === "sun") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(worldMaterials.sun);
+    document.getElementById(`x:${x}_y:${y}`).classList.add(worldElements.sun);
   } else if (type === "moon") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(worldMaterials.moon);
+    document.getElementById(`x:${x}_y:${y}`).classList.add(worldElements.moon);
   }
 }
 
