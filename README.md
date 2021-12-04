@@ -5,10 +5,15 @@
 
 Minecraft that you can see here is based on the original game, but in 2d.
 In the actual game the user has more options, so I decided to take the basic things.
+
 **1.Mining trees**
+
 **2.Mining dirt**
+
 **3.Mining stone**
+
 **4.building**
+
 The mining functions come with the specific tools.
 The user can mine trees with the axe, the dirt you need a shovel and stone is picaxe. if the user treis to brake a block with the wrong tool it will warn him.
 By the right side, where the nave bar is and all the tools, there is a little block that contains the last block that was mined. when you click on it, it gives the user the option to place the block on the map.
