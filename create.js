@@ -16,7 +16,6 @@ function create(x, y, type) {
   }
 }
 
-
 // random functions to create random xAxis for the trees
 const tree1 = () => {
   let x = Math.floor(Math.random() * (11 - 0 + 1)) + 0;
@@ -123,7 +122,7 @@ function clouds1() {
 }
 function clouds2() {
   let x = Math.floor(Math.random() * (21 - 12 + 1)) + 12;
-  
+
   create(x + 1, 5, "cloud");
   create(x + 2, 5, "cloud");
   create(x + 3, 5, "cloud");
@@ -134,16 +133,15 @@ function clouds2() {
   create(x + 4, 6, "cloud");
   console.log("works");
 }
-const trees = [tree1, tree2]
-const houeses = [house1, house2]
-
+const trees = [tree1, tree2];
+const houeses = [house1, house2];
 
 const myRandom = () => {
   let x = Math.floor(Math.random() * 2);
-console.log(x);
+  console.log(x);
   trees[x]();
   houeses[x]();
-  clouds1()
-  clouds2()
+  clouds1();
+  clouds2();
 };
-myRandom()
+myRandom();

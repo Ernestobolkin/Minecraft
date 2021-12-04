@@ -276,7 +276,6 @@ const pushInsideChest = () => {
   }
 };
 
-
 // else if(items[1].classList.length > 2){
 // else if()
 //   console.log(inventory[inventory.length - 1].split(" ")[1]);

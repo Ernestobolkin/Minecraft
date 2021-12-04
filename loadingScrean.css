@@ -1,55 +1,55 @@
-.gamePage{
+.gamePage {
   display: none;
 }
 
-.title-screen{
+.title-screen {
   width: 100vw;
   height: 100vh;
-  background-image: url('/Imgs/wallpaper.jpeg');
+  background-image: url("/Imgs/wallpaper.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
 }
-.btn-container{
+.btn-container {
   margin-top: 2rem;
 }
-.title{
-  background-image: url('/Imgs/580b57fcd9996e24bc43c2f5.png');
+.title {
+  background-image: url("/Imgs/580b57fcd9996e24bc43c2f5.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 40rem;
   height: 8rem;
 }
-.btn{
+.btn {
   width: 30rem;
   height: 55px;
   margin: 30px auto 0 auto;
   height: min-content;
-  background-color: #AEA4A2;
+  background-color: #aea4a2;
   border: 2px solid black;
   color: whitesmoke;
   text-align: center;
   font-size: 3rem;
   cursor: pointer;
 }
-.btn-type2{
+.btn-type2 {
   width: 12rem;
   height: min-content;
-  background-color: #AEA4A2;
+  background-color: #aea4a2;
   border: 2px solid black;
   color: whitesmoke;
   text-align: center;
   font-size: 2.5rem;
   cursor: pointer;
 }
-.setings{
+.setings {
   margin-right: 6rem;
 }
-.options{
+.options {
   width: min-content;
   display: flex;
   margin: 0 auto;
