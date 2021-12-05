@@ -7,7 +7,6 @@ function create(x, y, type) {
   } else if (type === "leaves") {
     document.getElementById(`x:${x}_y:${y}`).classList.add(materials.leaves);
   } else if (type === "cloud") {
-    cloudEsterEgg.push([x, y]);
     document.getElementById(`x:${x}_y:${y}`).id = materials.cloud;
   } else if (type === "sun") {
     document.getElementById(`x:${x}_y:${y}`).classList.add(worldElements.sun);
