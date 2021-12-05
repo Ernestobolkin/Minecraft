@@ -38,42 +38,27 @@ table.addEventListener("click", (event) => {
 // the tools functions
 let clickedPicax = false;
 picaxe.addEventListener("click", () => {
+  removeSelection();
   picaxe.classList.add(worldElements.green);
-  axe.classList.remove(worldElements.green);
-  shovel.classList.remove(worldElements.green);
-  invHover.classList.remove(worldElements.green);
   clickedPicax = true;
-  clickedAxe = false;
-  clickedShovel = false;
-  clickInventory = false;
 });
 
 let clickedAxe = false;
 axe.addEventListener("click", () => {
+  removeSelection();
   axe.classList.add(worldElements.green);
-  picaxe.classList.remove(worldElements.green);
-  shovel.classList.remove(worldElements.green);
-  invHover.classList.remove(worldElements.green);
   clickedAxe = true;
-  clickedPicax = false;
-  clickedShovel = false;
-  clickInventory = false;
 });
 
 let clickedShovel = false;
 shovel.addEventListener("click", () => {
+  removeSelection();
   shovel.classList.add(worldElements.green);
-  picaxe.classList.remove(worldElements.green);
-  axe.classList.remove(worldElements.green);
-  invHover.classList.remove(worldElements.green);
   clickedShovel = true;
-  clickedPicax = false;
-  clickedAxe = false;
-  clickInventory = false;
 });
 
 // gives the user optin to build back the last element that he removed
-//todo add an inventory instade one storage place!!!
+//todo add an inventory instead one storage place!!!
 let clickInventory = false;
 storage.addEventListener("click", () => {
   if (storage.classList.length > 1) {
@@ -199,8 +184,8 @@ generate.addEventListener("click", () => {
   inventory.splice(0, inventory.length);
   storage.classList.remove(storage.classList[1]);
   removeAllClasses();
-  base();
   removeSelection();
+  base();
   myRandom();
 });
 const removeAllClasses = () => {
@@ -252,8 +237,8 @@ setInterval(() => {
   }
 }, 2500);
 
-// todo finnish the chest part
 // chest inventory prototype
+// todo finnish the chest part
 chest.addEventListener("click", () => {
   if (hidenInventory.style.display === "none") {
     hidenInventory.style.display = "block";
@@ -262,21 +247,16 @@ chest.addEventListener("click", () => {
   }
 });
 
+let invCount = 0;
 const pushInsideChest = () => {
   if (inventory.length !== 0) {
-    if (items[0].classList.length < 3) {
-      // item number 0
-      items[0].classList.add(inventory[inventory.length - 1].split(" ")[1]);
-      console.log(items[0].classList);
-      // item number 1
-    } else if (items[0].classList != items[1].classList) {
-      items[1].classList.add(inventory[inventory.length - 1].split(" ")[1]);
-      // item number 2
-    }
+    invCount++;
+    items.forEach((elemenItem) => {
+      if (elemenItem.classList.length < 3) {
+        items[invCount - 1].classList.add(
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+      }
+    });
   }
 };
-
-// else if(items[1].classList.length > 2){
-// else if()
-//   console.log(inventory[inventory.length - 1].split(" ")[1]);
-//   items[1].classList.add(inventory[inventory.length - 1].split(" ")[1])
