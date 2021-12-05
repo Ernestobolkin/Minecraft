@@ -13,9 +13,11 @@
   flex-direction: column;
   align-items: center;
 }
+
 .btn-container {
   margin-top: 2rem;
 }
+
 .title {
   background-image: url("/Imgs/580b57fcd9996e24bc43c2f5.png");
   background-position: center;
