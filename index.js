@@ -250,7 +250,7 @@ setInterval(() => {
   } else {
     moon();
   }
-}, 500);
+}, 2500);
 
 // todo finnish the chest part
 // chest inventory prototype
