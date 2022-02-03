@@ -239,13 +239,13 @@ setInterval(() => {
 
 // chest inventory prototype
 // todo finnish the chest part
-chest.addEventListener("click", () => {
-  if (hidenInventory.style.display === "none") {
-    hidenInventory.style.display = "block";
-  } else {
-    hidenInventory.style.display = "none";
-  }
-});
+// chest.addEventListener("click", () => {
+//   if (hidenInventory.style.display === "none") {
+//     hidenInventory.style.display = "block";
+//   } else {
+//     hidenInventory.style.display = "none";
+//   }
+// });
 
 let invCount = 0;
 const pushInsideChest = () => {

@@ -130,14 +130,12 @@ function clouds2() {
   create(x + 2, 6, "cloud");
   create(x + 3, 6, "cloud");
   create(x + 4, 6, "cloud");
-  console.log("works");
 }
 const trees = [tree1, tree2];
 const houeses = [house1, house2];
 
 const myRandom = () => {
   let x = Math.floor(Math.random() * 2);
-  console.log(x);
   trees[x]();
   houeses[x]();
   clouds1();
